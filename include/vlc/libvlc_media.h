@@ -92,8 +92,41 @@ typedef enum libvlc_state_t
     libvlc_Paused,
     libvlc_Stopped,
     libvlc_Ended,
-    libvlc_Error
+    libvlc_Error,
+    libvlc_Authentication_Error,
+    libvlc_CPU_Error,
+    libvlc_Low_Bandwidth_Error,
+    libvlc_Disk_Error
 } libvlc_state_t;
+
+typedef enum libvlc_special_event_t
+{
+	libvlc_Authenticate_Error
+/*	libvlc_Switch_I_Frame=0,
+        libvlc_Switch_Normal_Frame,
+        libvlc_Disk_Event,
+        libvlc_Unknown_Event*/
+} libvlc_special_event_t;
+
+typedef enum libvlc_mouse_event_t
+{
+    libvlc_Mouse_Left_Down=0,
+    libvlc_Mouse_Left_Up,
+    libvlc_Mouse_Right_Down,
+    libvlc_Mouse_Right_Up,
+    libvlc_Mouse_Double_Click,
+    libvlc_Mouse_Moved,    
+    libvlc_Mouse_Else_Click
+ 
+} libvlc_mouse_event_t;
+
+typedef enum libvlc_analytic_event_t
+{
+    libvlc_analytic0=0,
+    libvlc_analytic1,
+    libvlc_analytic2
+
+} libvlc_analytic_event_t;
 
 enum
 {

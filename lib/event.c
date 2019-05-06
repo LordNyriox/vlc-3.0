@@ -2,7 +2,7 @@
  * event.c: New libvlc event control API
  *****************************************************************************
  * Copyright (C) 2007-2010 VLC authors and VideoLAN
- * $Id $
+ * $Id$
  *
  * Authors: Filippo Carone <filippo@carone.org>
  *          Pierre d'Herbemont <pdherbemont # videolan.org>
@@ -203,6 +203,12 @@ static const event_name_t event_list[] = {
     DEF(VlmMediaInstanceStatusPause)
     DEF(VlmMediaInstanceStatusEnd)
     DEF(VlmMediaInstanceStatusError)
+
+    DEF(MediaPlayerAnalyticEvent)
+    DEF(MediaPlayerMouseEvent)
+    DEF(MediaPlayerSpecialEvent)
+    DEF(MediaPlayerAuthenticationError)
+    DEF(MediaPlayerCPUError)
 };
 #undef DEF
 

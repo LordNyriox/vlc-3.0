@@ -93,6 +93,15 @@ typedef struct libvlc_audio_output_t
 } libvlc_audio_output_t;
 
 /**
+ * Rectangle type for video geometry
+ */
+typedef struct libvlc_rectangle_t
+{
+    int top, left;
+    int bottom, right;
+} libvlc_rectangle_t;
+
+/**
  * Description for audio output device.
  */
 typedef struct libvlc_audio_output_device_t
@@ -1442,6 +1451,7 @@ LIBVLC_API int libvlc_video_get_marquee_int( libvlc_media_player_t *p_mi,
 LIBVLC_API char *libvlc_video_get_marquee_string( libvlc_media_player_t *p_mi,
                                                       unsigned option );
 
+
 /**
  * Enable, disable or set an integer marquee option
  *
@@ -2081,6 +2091,70 @@ LIBVLC_API int libvlc_media_player_set_role(libvlc_media_player_t *p_mi,
                                             unsigned role);
 
 /** @} audio */
+
+ /**
+ * Sumit: File Chunk
+ *
+ * \param p_mi the Media Player
+ * \param p_e an initialized exception pointer
+ * \return boolean
+ */
+LIBVLC_API void libvlc_media_player_set_file_chunk        ( libvlc_media_player_t *, int , const char *,int,int);
+
+
+ /**
+ * Abhishek/Raju: File Chunk
+ *
+ * \param p_mi the Media Player
+ * \param p_e an initialized exception pointer
+ * \return boolean
+ */
+
+LIBVLC_API void libvlc_media_player_set_osd_options(libvlc_media_player_t *p_mi, int enable, int color, int msg_len, char *msg);
+
+LIBVLC_API void libvlc_media_player_toggle_my_pause( libvlc_media_player_t *p_mi, int pause);
+
+/**
+ * Raju: Enable/Disable Analytic Events
+ *
+ * \param p_mi the Media Player
+ * \param int callback
+ * \param int alerts
+ * \return void
+ */
+
+LIBVLC_API void libvlc_media_player_set_callback( libvlc_media_player_t *p_mi, int callback, int alerts );
+/**
+ * Sumit: Frame Adjust
+ *
+ * \param p_mi the Media Player
+ * \param p_e an initialized exception pointer
+ * \return boolean
+ */
+LIBVLC_API void libvlc_media_player_set_frame_adjust        ( libvlc_media_player_t *, int , int,int);
+/**
+ * Sumit: set_filter_options
+ *
+ * \param p_mi the Media Player
+ * \param p_e an initialized exception pointer
+ * \return boolean
+ */
+LIBVLC_API void libvlc_media_player_set_filter_options   ( libvlc_media_player_t *, float,float,int,float,float,float);
+
+LIBVLC_API int
+            libvlc_media_player_set_video_params(libvlc_media_player_t *,analytic_input_params * ,int64_t, const char * );
+
+LIBVLC_API void
+            libvlc_media_player_set_new_position(libvlc_media_player_t *,float,int64_t );
+
+LIBVLC_API int
+            libvlc_media_player_play_file(libvlc_media_player_t *,int ,int64_t, const char * );
+
+
+LIBVLC_API int
+            libvlc_media_player_play_new(libvlc_media_player_t *,int64_t, const char *,int temp );
+
+
 
 /** @} media_player */
 

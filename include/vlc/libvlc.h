@@ -78,6 +78,110 @@ typedef struct libvlc_instance_t libvlc_instance_t;
 
 typedef int64_t libvlc_time_t;
 
+
+typedef struct debugParams{
+
+
+                int debugFlag;
+                int imgScaling;
+                int thresh4;
+                
+                
+                int transparency;   //to make zone transparent
+		int warningZone;    //to draw warning zones
+		
+		int imgWidth;        //image width
+		int imgHeight;       //image height
+
+		int imageEnhancementIndex;
+		int refBrightness;
+		int refContrast;
+
+		float minObjWidth;       //min obj width
+		float minObjHeight;      //min obj height
+		float maxObjWidth;       //max obj width
+		float maxObjHeight;      //max obj height
+
+		int enableAlerts;         //to enable alerts
+		int alertFrequency;       //how frequently alerts to be given
+		int alertDuration;        //period of alerts
+		int enableCallBacks;      // used in opencv_example
+	
+		int minAbandonDuration;   //used in ABdetection
+		int minMissingDuration;   //used in missingobj
+		
+		int matchScoreThresh;   //used in missingobj
+		int topType;            //entry,exit
+		int bottomType;         //exit,entry
+		
+		int doMotionDetection;
+		int callbackFrequency;
+		int motionSensitivity;
+		int doCameraTampering;
+
+		int saveSnapshot;
+		char snapshotsPath[200];
+	}debugParams;
+
+	typedef struct line{
+		int id;
+		float x1;
+		float y1;
+		float x2;
+		float y2;
+		float minDist;
+		float intrusionDist;
+		float x3;
+		float y3;
+		float x4;
+		float y4;
+	}line;
+
+	typedef struct point{
+		int id;
+		float x;
+		float y;
+	}point;
+
+	typedef struct shape{
+
+		int id;
+		//////Shape type: 1-Line, 2-Polygong, 3-rectangle, 4-Circle//////////////
+		int type;
+
+		////Using for taking input of lines only////////////////////
+		line  lines[20];
+
+		//////Using for taking input for Polygon in terms of just vertex  points///////////
+		point points[20];
+
+		/////For setRectParam//////////////
+		float x;
+		float y;
+		float rectWidth;
+		float rectHeight;
+		float radius;
+		int direction1;
+		int direction2;
+		int direction3;
+		int direction4;
+
+		////////Warning zone distance/////////
+		float minDist;
+	}shape;
+
+	typedef struct analytic_input_params
+	{
+		int cameraid;	        
+                int waitingFrames;
+		int greyScale;
+		int originalVideo;
+		int analyticType;
+		int applyAnalytics; //Newly added
+                char cameraName[64];
+		debugParams debugParam;
+		shape shapes[10];
+	} analytic_input_params;
 /** \defgroup libvlc_error LibVLC error handling
  * @{
  */
