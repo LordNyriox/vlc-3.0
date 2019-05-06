@@ -2,7 +2,7 @@
  * libvlc_events.h:  libvlc_events external API structure
  *****************************************************************************
  * Copyright (C) 1998-2010 VLC authors and VideoLAN
- * $Id $
+ * $Id$
  *
  * Authors: Filippo Carone <littlejohn@videolan.org>
  *          Pierre d'Herbemont <pdherbemont@videolan.org>
@@ -86,6 +86,14 @@ enum libvlc_event_e {
     libvlc_MediaPlayerAudioVolume,
     libvlc_MediaPlayerAudioDevice,
     libvlc_MediaPlayerChapterChanged,
+    
+    libvlc_MediaPlayerAnalyticEvent,
+    libvlc_MediaPlayerMouseEvent,
+    libvlc_MediaPlayerSpecialEvent,
+    libvlc_MediaPlayerAuthenticationError,
+    libvlc_MediaPlayerCPUError,
+    libvlc_MediaPlayerLowBandwidthError,
+    libvlc_MediaPlayerDiskError,
 
     libvlc_MediaListItemAdded=0x200,
     libvlc_MediaListWillAddItem,
@@ -128,6 +136,15 @@ enum libvlc_event_e {
     libvlc_VlmMediaInstanceStatusEnd,
     libvlc_VlmMediaInstanceStatusError
 };
+
+
+typedef struct t_Analytic_result
+{
+	int eventID;
+	int eventVal;
+	int zones[20];
+	char timestamp[10];
+}t_Analytic_result;
 
 /**
  * A LibVLC event
@@ -267,8 +284,32 @@ typedef struct libvlc_event_t
 
         struct
         {
+            libvlc_analytic_event_t new_analytic_event;
+	    
+            int value1;
+	    t_Analytic_result result[4]; 
+            //const char* values_string ;
+        } media_player_analytic_event ;
+
+
+        struct
+        {
             float volume;
         } media_player_audio_volume;
+
+	struct
+        {
+            libvlc_mouse_event_t new_mouse_event;
+            int value;
+
+        } media_player_mouse_event ;
+
+	struct
+        {
+            libvlc_special_event_t new_special_event;
+            int value;
+
+        } media_player_special_event ;
 
         struct
         {

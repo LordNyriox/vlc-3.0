@@ -53,9 +53,10 @@ struct sout_instance_t
 
     /** count of output that can't control the space */
     int                 i_out_pace_nocontrol;
-
+    int 		count;	
     vlc_mutex_t         lock;
     sout_stream_t       *p_stream;
+    
 };
 
 /****************************************************************************
@@ -76,7 +77,10 @@ struct sout_access_out_t
 
     module_t                *p_module;
     char                    *psz_access;
-
+    char                    *new_path;
+    int                     chunk_condition;
+    int                     frame_adjust;
+    int                     frame_rate;
     char                    *psz_path;
     sout_access_out_sys_t   *p_sys;
     int                     (*pf_seek)( sout_access_out_t *, off_t );
@@ -125,6 +129,7 @@ struct  sout_mux_t
 
     sout_instance_t     *p_sout;
 
+    int 		 frame_adjust;
     char                *psz_mux;
     config_chain_t          *p_cfg;
 
