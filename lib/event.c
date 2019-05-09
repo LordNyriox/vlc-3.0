@@ -174,6 +174,14 @@ static const event_name_t event_list[] = {
     DEF(MediaPlayerAudioDevice)
     DEF(MediaPlayerChapterChanged)
 
+    DEF(MediaPlayerAnalyticEvent)
+    DEF(MediaPlayerMouseEvent)
+    DEF(MediaPlayerSpecialEvent)
+    DEF(MediaPlayerAuthenticationError)
+    DEF(MediaPlayerCPUError)
+    DEF(MediaPlayerLowBandwidthError)
+    DEF(MediaPlayerDiskError)
+
     DEF(MediaListItemAdded)
     DEF(MediaListWillAddItem)
     DEF(MediaListItemDeleted)
@@ -203,12 +211,6 @@ static const event_name_t event_list[] = {
     DEF(VlmMediaInstanceStatusPause)
     DEF(VlmMediaInstanceStatusEnd)
     DEF(VlmMediaInstanceStatusError)
-
-    DEF(MediaPlayerAnalyticEvent)
-    DEF(MediaPlayerMouseEvent)
-    DEF(MediaPlayerSpecialEvent)
-    DEF(MediaPlayerAuthenticationError)
-    DEF(MediaPlayerCPUError)
 };
 #undef DEF
 
