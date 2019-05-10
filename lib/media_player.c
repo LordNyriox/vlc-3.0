@@ -939,12 +939,13 @@ void libvlc_media_player_set_media(
 
     release_input_thread( p_mi );
 
+    libvlc_printerr( "..............................................1" );
     lock( p_mi );
     set_state( p_mi, libvlc_NothingSpecial, true );
     unlock_input( p_mi );
 
     libvlc_media_release( p_mi->p_md );
-
+libvlc_printerr( "..............................................2" );
     if( !p_md )
     {
         p_mi->p_md = NULL;
@@ -952,13 +953,14 @@ void libvlc_media_player_set_media(
         return; /* It is ok to pass a NULL md */
     }
 
+libvlc_printerr( "..............................................3" );
     libvlc_media_retain( p_md );
     p_mi->p_md = p_md;
-
+libvlc_printerr( "..............................................4" );
     /* The policy here is to ignore that we were created using a different
      * libvlc_instance, because we don't really care */
     p_mi->p_libvlc_instance = p_md->p_libvlc_instance;
-
+libvlc_printerr( "..............................................5" );
     unlock(p_mi);
 
     /* Send an event for the newly available media */
@@ -966,6 +968,7 @@ void libvlc_media_player_set_media(
     event.type = libvlc_MediaPlayerMediaChanged;
     event.u.media_player_media_changed.new_media = p_md;
     libvlc_event_send( &p_mi->event_manager, &event );
+libvlc_printerr( "..............................................6" );
 
 }
 
