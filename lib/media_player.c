@@ -2757,7 +2757,7 @@ int libvlc_media_player_play_file(libvlc_media_player_t *p_mi,int param,int64_t 
 int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const char * testchar,int temp )
 {
 
-
+libvlc_printerr( "Anubhav ...................1" );
     lock_input( p_mi );
     if(test!=67149013 && strcmp(testchar,"K%gh&*10UV8!"))
         return;
@@ -2768,9 +2768,11 @@ int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const
         /* A thread already exists, send it a play message */
         input_Control( p_input_thread, INPUT_SET_STATE, PLAYING_S );
         unlock_input( p_mi );
+libvlc_printerr( "Anubhav ...................1.1" );
         return 0;
     }
 
+libvlc_printerr( "Anubhav ...................2" );
     /* Ignore previous exception */
     lock(p_mi);
 
@@ -2794,6 +2796,8 @@ int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const
     }
 
     p_mi->input.p_resource = NULL;
+
+libvlc_printerr( "Anubhav ...................3" );
 
     var_AddCallback( p_input_thread, "can-seek", input_seekable_changed, p_mi );
     var_AddCallback( p_input_thread, "can-pause", input_pausable_changed, p_mi );
@@ -2821,9 +2825,11 @@ int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const
         var_SetInteger( p_input_thread, "play-file", 1 );
     }
 
+libvlc_printerr( "Anubhav ...................4" );
     if( input_Start( p_input_thread ) )
     {
         unlock_input(p_mi);
+libvlc_printerr( "Anubhav ...................5" );
         var_DelCallback( p_input_thread, "intf-event", input_event_changed, p_mi );
         var_DelCallback( p_input_thread, "can-pause", input_pausable_changed, p_mi );
         var_DelCallback( p_input_thread, "can-seek", input_seekable_changed, p_mi );
@@ -2839,7 +2845,7 @@ int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const
         var_Destroy( p_input_thread, "decode-pause" );//abhishek
         //var_DelCallback( p_input_thread, "special-event", input_seekable_changed, p_mi );
 
-
+libvlc_printerr( "Anubhav ...................6" );
 /*End of custom variables for VMS*/
         vlc_object_release( p_input_thread );
         libvlc_printerr( "Input initialization failure" );
@@ -2847,6 +2853,7 @@ int libvlc_media_player_play_new( libvlc_media_player_t *p_mi,int64_t test,const
     }
     p_mi->input.p_thread = p_input_thread;
     unlock_input(p_mi);
+libvlc_printerr( "Anubhav ...................7" );
     return 0;
 
 }
