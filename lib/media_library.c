@@ -71,6 +71,8 @@ libvlc_media_library_new( libvlc_instance_t * p_inst )
 
     libvlc_event_manager_init( &p_mlib->event_manager, p_mlib );
     libvlc_retain( p_inst );
+
+    libvlc_printerr( "Success : Media Library New" );
     return p_mlib;
 }
 
@@ -86,6 +88,7 @@ void libvlc_media_library_release( libvlc_media_library_t * p_mlib )
 
     libvlc_event_manager_destroy( &p_mlib->event_manager );
     libvlc_release( p_mlib->p_libvlc_instance );
+    libvlc_printerr( "Success : Release media library" );
     free( p_mlib );
 }
 
@@ -126,6 +129,7 @@ int libvlc_media_library_load( libvlc_media_library_t * p_mlib )
 
     int ret = libvlc_media_list_add_file_content( p_mlib->p_mlist, psz_uri );
     free( psz_uri );
+    libvlc_printerr( "Success : Media Library load media" );
     return ret;
 }
 

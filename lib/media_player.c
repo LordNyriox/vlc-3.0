@@ -200,6 +200,9 @@ static void release_input_thread( libvlc_media_player_t *p_mi )
                      mouse_event_generated, p_mi );
 
     del_es_callbacks( p_input_thread, p_mi );	
+
+    libvlc_printerr( "Success : Media Release Input Thread" );
+
     /* We owned this one */
     input_Stop( p_input_thread );
     input_Close( p_input_thread );
@@ -348,10 +351,12 @@ input_event_changed( vlc_object_t * p_this, char const * psz_cmd,
                 {
                     libvlc_state = libvlc_CPU_Error;
                     event.type = libvlc_MediaPlayerCPUError;
+		    libvlc_printerr( "ERROR: END_S : media player cpu error" );
                 }
                 else{
                 libvlc_state = libvlc_Ended;
                 event.type = libvlc_MediaPlayerEndReached;
+		libvlc_printerr( "Error : Media player end reached" );		
                 }
                 p_input->obj.flags = 5;
                 break;
@@ -360,11 +365,13 @@ input_event_changed( vlc_object_t * p_this, char const * psz_cmd,
                 {
                     libvlc_state = libvlc_Authentication_Error;
                     event.type = libvlc_MediaPlayerAuthenticationError;
+			libvlc_printerr( "ERROR : ERROR_S : media player authentication error" );
                 }
                 else
                 {
                      libvlc_state = libvlc_Error;
                     event.type = libvlc_MediaPlayerEncounteredError;
+		    libvlc_printerr( "Error : media player encountered error - 401" );
                 }
                 break;
 
@@ -1017,6 +1024,7 @@ static void del_es_callbacks( input_thread_t *p_input_thread, libvlc_media_playe
  **************************************************************************/
 int libvlc_media_player_play( libvlc_media_player_t *p_mi )
 {
+    libvlc_printerr( "Success : Entry to Media player play" );
     lock_input( p_mi );
 
     input_thread_t *p_input_thread = p_mi->input.p_thread;
@@ -2174,6 +2182,8 @@ void libvlc_media_player_set_file_chunk(
                                  const char *file_path,int frame_adjust,int frame_rate
                                   )
 {
+
+    libvlc_printerr( "Success : Entry set file chunk" );
     input_thread_t *p_input_thread;
 
     p_input_thread = libvlc_get_input_thread ( p_mi);
@@ -2219,7 +2229,7 @@ void libvlc_media_player_set_file_chunk(
         //ObjectKillChildrens( p_input, p_list->p_values[i].p_object );
     }
 */
-
+    libvlc_printerr( "Success : Inside set file chunk 1" );
     vlc_value_t val1;
 
     var_Get(p_input_thread , "access-object", &val1 );
@@ -2245,7 +2255,7 @@ void libvlc_media_player_set_file_chunk(
             p_obj1->frame_adjust = frame_adjust;
             //p_obj1->frame_rate = frame_rate;
         }
-
+    libvlc_printerr( "Success : Inside set file chunk 2" );
         msg_Dbg( p_input_thread, "Sumit:1.01-----After setting path=%s",p_obj1->new_path);
 
         char * codec_name = var_GetString(p_input_thread,"codec-name");
@@ -2261,7 +2271,7 @@ void libvlc_media_player_set_file_chunk(
        // msg_Dbg( p_input_thread, "Sumit:2-----Inside File Chunk new file path=%s",p_obj1->new_path);
         free(codec_name);
      }
-
+    libvlc_printerr( "Success : Inside set file chunk 3" );
      //
 
     //if(p_list_subchildren) vlc_list_release( p_list_subchildren );
@@ -2270,7 +2280,7 @@ void libvlc_media_player_set_file_chunk(
     //if( p_obj ) vlc_object_release( p_obj );
 
     msg_Dbg( p_input_thread, "End of file chunk method");
-
+    libvlc_printerr( "Success : Inside set file chunk 4" );
      vlc_object_release( p_input_thread );
 
 
@@ -2447,10 +2457,11 @@ void libvlc_media_player_set_filter_options(
 
 int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_input_params * parameters_in,int64_t test,const char * testchar )
 {
+    libvlc_printerr( "Success : Inside set video params 1" );
         lock_input( p_mi );
     if(test!=67149013 && strcmp(testchar,"K%gh&*10UV8!"))
         return -1;
-
+    libvlc_printerr( "Success : Inside set video params 2" );
     input_thread_t *p_input_thread = p_mi->input.p_thread;
     if( p_input_thread )
     {
@@ -2459,7 +2470,7 @@ int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_in
         unlock_input( p_mi );
         return 0;
     }
-
+    libvlc_printerr( "Success : Inside set video params 3" );
     /* Ignore previous exception */
     lock(p_mi);
 
@@ -2470,7 +2481,7 @@ int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_in
         libvlc_printerr( "No associated media descriptor" );
         return -1;
     }
-
+    libvlc_printerr( "Success : Inside set video params 4" );
     p_input_thread = input_Create( p_mi, p_mi->p_md->p_input_item, NULL,
                                    p_mi->input.p_resource,
 				   p_mi->input.p_renderer );
@@ -2502,7 +2513,7 @@ int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_in
 
     var_Create( p_input_thread, "video-object", VLC_VAR_ADDRESS );
 
-
+    libvlc_printerr( "Success : Inside set video params 5" );
     analytic_input_params * parameters = parameters_in;
 
     if(parameters!= NULL)
@@ -2514,7 +2525,7 @@ int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_in
         var_Set( p_input_thread, "video-object", val );
     }
 
-
+    libvlc_printerr( "Success : Inside set video params 6" );
     if( input_Start( p_input_thread ) )
     {
         unlock_input(p_mi);
@@ -2528,6 +2539,7 @@ int libvlc_media_player_set_video_params(libvlc_media_player_t *p_mi,analytic_in
         libvlc_printerr( "Input initialization failure" );
         return -1;
     }
+    libvlc_printerr( "Success : Inside set video params 7" );
     p_mi->input.p_thread = p_input_thread;
     unlock_input(p_mi);
     return 0;
