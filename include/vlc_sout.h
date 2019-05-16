@@ -51,6 +51,8 @@ struct sout_instance_t
 
     char *psz_sout;
 
+    int counter;
+
     /** count of output that can't control the space */
     int                 i_out_pace_nocontrol;
     int 		count;	
