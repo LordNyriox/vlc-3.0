@@ -143,6 +143,9 @@ void input_ControlVarInit ( input_thread_t *p_input )
     /* Position */
     var_Create( p_input, "position",  VLC_VAR_FLOAT );
 
+    var_Create( p_input, "file-size",  VLC_VAR_TIME );
+    var_Create( p_input, "codec-name", VLC_VAR_STRING);
+
     /* Time */
     var_Create( p_input, "time", VLC_VAR_INTEGER );
     var_Create( p_input, "time-offset", VLC_VAR_INTEGER );    /* relative */
