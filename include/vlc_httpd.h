@@ -149,4 +149,8 @@ VLC_API void httpd_MsgAdd( httpd_message_t *, const char *psz_name, const char *
 /* return "" if not found. The string is not allocated */
 VLC_API const char * httpd_MsgGet( const httpd_message_t *, const char *psz_name );
 
+VLC_EXPORT( char *, httpd_GetSession, ( httpd_client_t* ) );
+
+VLC_EXPORT( void, httpd_SetSession, ( httpd_client_t*,const char *psz_name ) );
+
 #endif /* _VLC_HTTPD_H */
