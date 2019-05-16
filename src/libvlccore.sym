@@ -141,6 +141,8 @@ vlc_https_HostNew
 vlc_rtsp_HostNew
 httpd_MsgAdd
 httpd_MsgGet
+httpd_GetSession
+httpd_SetSession
 httpd_RedirectDelete
 httpd_RedirectNew
 httpd_ServerIP
@@ -169,6 +171,7 @@ input_DecoderFlush
 input_GetItem
 input_item_AddInfo
 input_item_AddOption
+input_item_AddOptionNew
 input_item_AddOptions
 input_item_AddOpaque
 input_item_Copy
@@ -206,6 +209,7 @@ input_Read
 input_resource_New
 input_resource_Release
 input_resource_TerminateVout
+input_resource_TerminateSout
 input_resource_Terminate
 input_resource_GetAout
 input_resource_HoldAout
