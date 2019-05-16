@@ -700,4 +700,10 @@ VLC_API void input_resource_PutAout( input_resource_t *, audio_output_t * );
 VLC_API void input_resource_ResetAout( input_resource_t * );
 
 /** @} */
+
+/**
+ * Forcefully destroys the s output (e.g. when the playlist is stopped).
+ */
+VLC_API void input_resource_TerminateSout( input_resource_t * );
+
 #endif
