@@ -392,6 +392,38 @@ static inline void vout_display_SendEventMouseMoved(vout_display_t *vd, int x, i
 static inline void vout_display_SendEventMousePressed(vout_display_t *vd, int button)
 {
     vout_display_SendEvent(vd, VOUT_DISPLAY_EVENT_MOUSE_PRESSED, button);
+switch(button)
+    {
+        case MOUSE_BUTTON_LEFT:
+            if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && vd->p_parent->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent->p_parent->p_parent, "mouse-event", 1 );
+            }
+            else if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent->p_parent, "mouse-event", 1 );
+            }
+            else if(vd->p_parent->p_parent  && !strcmp(vd->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent, "mouse-event", 1 );
+            }
+         break;
+
+        case MOUSE_BUTTON_RIGHT:
+            if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && vd->p_parent->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent->p_parent->p_parent, "mouse-event", 3 );
+            }
+            else if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent->p_parent, "mouse-event", 3 );
+            }
+            else if(vd->p_parent->p_parent  && !strcmp(vd->p_parent->p_parent->psz_object_type,"input"))
+            {
+                var_SetInteger( vd->p_parent->p_parent, "mouse-event", 3 );
+            }
+            break;
+    }
 }
 static inline void vout_display_SendEventMouseReleased(vout_display_t *vd, int button)
 {
@@ -399,7 +431,19 @@ static inline void vout_display_SendEventMouseReleased(vout_display_t *vd, int b
 }
 static inline void vout_display_SendEventMouseDoubleClick(vout_display_t *vd)
 {
-    vout_display_SendEvent(vd, VOUT_DISPLAY_EVENT_MOUSE_DOUBLE_CLICK);
+    //vout_display_SendEvent(vd, VOUT_DISPLAY_EVENT_MOUSE_DOUBLE_CLICK);
+    if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && vd->p_parent->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->p_parent->psz_object_type,"input"))
+    {
+        var_SetInteger( vd->p_parent->p_parent->p_parent->p_parent, "mouse-event", 5 );
+    }
+    else if(vd->p_parent->p_parent && vd->p_parent->p_parent->p_parent && !strcmp(vd->p_parent->p_parent->p_parent->psz_object_type,"input"))
+    {
+        var_SetInteger( vd->p_parent->p_parent->p_parent, "mouse-event", 5 );
+    }
+    else if(vd->p_parent->p_parent  && !strcmp(vd->p_parent->p_parent->psz_object_type,"input"))
+    {
+        var_SetInteger( vd->p_parent->p_parent, "mouse-event", 5 );
+    }
 }
 static inline void vout_display_SendEventViewpointMoved(vout_display_t *vd,
                                                         const vlc_viewpoint_t *vp)
