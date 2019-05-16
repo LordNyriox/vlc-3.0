@@ -233,6 +233,8 @@ enum input_item_option_e
  * This function allows to add an option to an existing input_item_t.
  */
 VLC_API int input_item_AddOption(input_item_t *, const char *, unsigned i_flags );
+
+VLC_API int input_item_AddOptionNew(input_item_t *, const char *, unsigned i_flags );
 /**
  * This function add several options to an existing input_item_t.
  */
