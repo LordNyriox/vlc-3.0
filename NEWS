@@ -767,7 +767,6 @@ Removed modules
  * iOS Dialog Provider (use MobileVLCKit / TVVLCKit instead)
  * QuickTime decoder module (use native codecs)
  * BD access module (use libbluray)
- * Direct2D module (use Direct3D11)
  * EyeTV access module
  * Rar access and stream filter: use libarchive
  * VDA decoder: use VT

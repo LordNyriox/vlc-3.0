@@ -514,7 +514,7 @@ dnl Check for broken versions of mingw-runtime compatability library
 #include <_mingw.h>
 #if defined(__MINGW64_VERSION_MAJOR)
 # if __MINGW64_VERSION_MAJOR < 3
-#  error Attempting to use mingw-runtime with broken vsnprintf support
+#  error Attempting to use mingw-runtime with broken vsnprintf and direct2d support
 # endif
 #elif __MINGW32_MAJOR_VERSION == 3 && __MINGW32_MINOR_VERSION < 15
 # error Attempting to use mingw-runtime with broken vsnprintf support
@@ -3360,6 +3360,11 @@ AS_IF([test "${enable_directx}" != "no"], [
       ],
       [AC_MSG_WARN([Could not find required IDirectXVideoDecoder in dxva2api.h])])
 
+  ])
+
+  dnl Direct2D
+  AC_CHECK_HEADERS(d2d1.h, [
+    VLC_ADD_PLUGIN([direct2d])
   ])
 ])
 
