@@ -23,6 +23,10 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  *****************************************************************************/
 
+#ifdef MODULE_NAME_IS_direct2d
+# include <d2d1.h>
+#endif
+
 /*****************************************************************************
  * event_thread_t: event thread
  *****************************************************************************/
@@ -69,6 +73,13 @@ typedef struct vout_display_sys_win32_t
     RECT         rect_dest_clipped;
 
     picture_pool_t *pool;
+
+#ifdef MODULE_NAME_IS_direct2d
+    HINSTANCE              d2_dll;            /* handle of the opened d2d1 dll */
+    ID2D1Factory           *d2_factory;                         /* D2D factory */
+    ID2D1HwndRenderTarget  *d2_render_target;          /* D2D rendering target */
+    ID2D1Bitmap            *d2_bitmap;                            /* D2 bitmap */
+#endif
 
     bool use_desktop;     /* show video on desktop window ? */
 
